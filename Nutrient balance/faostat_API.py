@@ -1,12 +1,12 @@
 
 
 """
+Created on Jun 19 2022
+
 @author: Fan Yang
 
 ToDo
 - Documentation
-- version compatible selenium
-    1) automatated webdriver update
 
 """
 
