@@ -19,11 +19,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 
 import pandas as pd
+import pathlib
 import os
 import selenium.webdriver.support.expected_conditions as EC
 import zipfile
 
-parent_path = "D:\\Users\\sheep\\Codes\\KRproject"
+parent_path = pathlib.Path(__file__).parent.parent.resolve()
 data_path = os.path.join(parent_path,"Nutrient balance")
 
 
