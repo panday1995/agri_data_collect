@@ -131,10 +131,10 @@ folder_ls = [folder for folder in os.listdir(faostat_unzip) if folder not in pai
 for folder in folder_ls:
     first_word = folder.split("_")[0] # find the first word of a FAOstat folder
     if first_word in pair.keys():
+        # move folders from /faostat to /faostat/category
         shutil.move(faostat_unzip+'/'+folder,faostat_unzip+'/'+pair[first_word]+'/'+folder)
 
 
 os.chdir("../../")
-
 
 
