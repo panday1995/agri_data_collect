@@ -1,4 +1,6 @@
-# Nutrient requirements
+# Nutrient balance
+
+## Nutrient requirements
 
 __Nutrient uptake requirement__</br>
 is expressed in ($kg_{nutrient}*ha_{-1}$), is the amount of a nutrient that must be absorbed in aboveground crop biomass to realize a certain target yield $Y^T$ ($kg*ha_{-1}$).
@@ -23,3 +25,12 @@ Macronutrients
 - Nitrogen
 - Phosphorus
 - Potassium
+
+## Nutrient mass balance
+
+$$
+Nu_{fert} + Nu_{soil} + Nu_{manu} = Nu_{harv} + Nu_{resid} + Nu_{emis}  
+$$
+
+Knowns: $Nu_{fert}$</br>
+Unknowns: $Nu_{soil}$, $Nu_{manu}$, $Nu_{harv}$, $Nu_{resid}$, $Nu_{emis}$</br>
