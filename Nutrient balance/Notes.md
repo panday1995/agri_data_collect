@@ -1,11 +1,16 @@
-# Nutrient balance
+# Agriculture balance
 
 ## Table of contents
 
-[Nutrient requirements](#nutrient-requirements)</br>
-[Data sources](#data-sources)
+- [Nutrient balance](#nutrient-balance)
 
-## Nutrient requirements
+  - [Nutrient requirements](#nutrient-requirements)
+  - [Nutrient mass balance](#nutrient-mass-balance)
+  - [Data sources](#data-sources)
+
+## Nutrient balance
+
+### Nutrient requirements
 
 __Nutrient uptake requirement__</br>
 is expressed in ($kg_{nutrient}*ha_{-1}$), is the amount of a nutrient that must be absorbed in aboveground crop biomass to realize a certain target yield $Y^T$ ($kg*ha_{-1}$).
@@ -31,15 +36,33 @@ Macronutrients
 - Phosphorus
 - Potassium
 
-## Nutrient mass balance
+### Nutrient mass balance
 
 $$
-Nu_{fert} + Nu_{soil} + Nu_{manu} = Nu_{harv} + Nu_{resid} + Nu_{emis}  
+Nu_{fert} + \Delta Nu_{soil} + Nu_{manu} = Nu_{harv} + Nu_{resid} + Nu_{emis}  
 $$
 
-Knowns: $Nu_{fert}$</br>
-Unknowns: $Nu_{soil}$, $Nu_{manu}$, $Nu_{harv}$, $Nu_{resid}$, $Nu_{emis}$</br>
+Knowns:
 
-## Data sources
+- $Nu_{fert}$ from [IFA and others](nutri_data/doi_10.5061_dryad.2rbnzs7qh__v3/Global_data_on_fertilizer_use_by_crop_and_by_country_2022.csv)
+- $Nu_{resid}$ from FAOstat
+- $Nu_{soil}$ assumed no change in Tier 1 approach
+  
+Unknowns:
 
-![IPCC data](IPCC_data.png)
+- $Nu_{manu}$ acquired from animal system
+- $Nu_{harv}$ Nutrient absorbation rate
+- $Nu_{emis}$ fertilizer use efficiency: fertilizers not absorbed by crops
+
+### Data sources
+
+[Table 11.1 of IPCC data](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf)
+
+## Other balances
+
+<!--
+what are other balances to achieve a mass balance of crops?
+we have N, K, P balances
+C balance?
+H balance?
+-->
