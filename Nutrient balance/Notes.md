@@ -31,4 +31,4 @@ Macronutrients
 
 ## Data sources
 
-![IPCC data](2022-06-21-11-58-47.png)
+![IPCC data](IPCC_data.png)
