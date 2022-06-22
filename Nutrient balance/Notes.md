@@ -1,5 +1,10 @@
 # Nutrient balance
 
+## Table of contents
+
+[Nutrient requirements](#nutrient-requirements)</br>
+[Data sources](#data-sources)
+
 ## Nutrient requirements
 
 __Nutrient uptake requirement__</br>
@@ -34,3 +39,7 @@ $$
 
 Knowns: $Nu_{fert}$</br>
 Unknowns: $Nu_{soil}$, $Nu_{manu}$, $Nu_{harv}$, $Nu_{resid}$, $Nu_{emis}$</br>
+
+## Data sources
+
+![IPCC data](IPCC_data.png)

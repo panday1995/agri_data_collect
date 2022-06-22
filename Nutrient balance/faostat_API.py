@@ -33,7 +33,7 @@ import zipfile
 
 parent_path = pathlib.Path(__file__).parent.parent.resolve()
 data_path = os.path.join(parent_path,"Nutrient balance")
-
+faostat_unzip = os.path.join(data_path,"faostat")
 
 
 # install Chrome browser webdriver
@@ -83,7 +83,7 @@ while FAO_zip not in os.listdir(data_path): # check if FAO_zip is downloaded
     print("FAOSTAT downloading, {:.1f}s".format(time))
 else: # if yes, unzip the file
     handle = zipfile.ZipFile(FAO_zip)
-    faostat_unzip = os.path.join(data_path,"faostat")
+    
     handle.extractall(os.path.join(faostat_unzip)) # extract the files into a "faostat" folder
     handle.close()
     os.remove(FAO_zip) # remove the zip file
@@ -107,10 +107,10 @@ category_dict = {"Production":["Production","Value"],
                 "Food Security and Nutrition":["Food"],
                 "Food Balances":["SUA", "FoodBalanceSheetsHistoric","FoodBalanceSheets", "CommodityBalances"],
                 "Trade":["Trade",],
-                "Prices":["Prices","PricesArchive",'Deflators','Exchange'],
+                "Prices":["Prices","PricesArchive",'Deflators','Exchange', "ConsumerPriceIndices"],
                 "Land, Inputs and Sustainability":["Inputs","Environment"],
                 "Population and Employment":["Population",'Employment'],
-                "Investment":["Investment"],
+                "Investment":["Investment", "Development"],
                 "Macro-Economic Indicators":["Macro-Statistics"],
                 "Climate Change":["Emissions"],
                 "Forestry":["Forestry","Forestal"],
