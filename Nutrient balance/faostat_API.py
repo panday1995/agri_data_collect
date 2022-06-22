@@ -15,7 +15,6 @@ ToDo
 
 """
 
-from collections import Iterable
 from selenium import webdriver
 # from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.chrome.service import Service
@@ -24,12 +23,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from time import sleep
 
+import pytest
 import pandas as pd
 import pathlib
 import os
 import selenium.webdriver.support.expected_conditions as EC
 import shutil
 import zipfile
+
 
 parent_path = pathlib.Path(__file__).parent.parent.resolve()
 data_path = os.path.join(parent_path,"Nutrient balance")
@@ -82,6 +83,7 @@ while FAO_zip not in os.listdir(data_path): # check if FAO_zip is downloaded
     time = time+10
     print("FAOSTAT downloading, {:.1f}s".format(time))
 else: # if yes, unzip the file
+    
     handle = zipfile.ZipFile(FAO_zip)
     
     handle.extractall(os.path.join(faostat_unzip)) # extract the files into a "faostat" folder

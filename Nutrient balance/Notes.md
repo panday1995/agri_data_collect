@@ -50,8 +50,8 @@ Knowns:
   
 Unknowns:
 
-- $Nu_{manu}$ acquired from animal system
-- $Nu_{harv}$ Nutrient absorbation rate
+- $Nu_{manu}$ acquired from animal system <!--animal balance first assumes 0-->
+- $Nu_{harv}$ Nutrient absorbation rate <!--value from Stefano do some basic search, part of IPCC N2O, IPCC meeting before starting-->
 - $Nu_{emis}$ fertilizer use efficiency: fertilizers not absorbed by crops
 
 ### Data sources
@@ -65,4 +65,16 @@ what are other balances to achieve a mass balance of crops?
 we have N, K, P balances
 C balance?
 H balance?
+-->
+
+<!--
+Currently, I am only working on data collection. Do we also need some sort of data pipeline to connect collected data to data input into core modules?
+
+unit test, documentation
+
+https://pyscaffold.org/en/stable/
+
+A pipeline is needed
+Thurday or friday
+Full picture of dataflow in the project
 -->
