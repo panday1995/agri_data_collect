@@ -97,7 +97,7 @@ def unzip_FAO():
 
     if not os.path.exists(FAO_zip_path):
         browser = down_FAOstat()
-        browser.quit() # close browser
+        
     # go to the data    
     time = 0
     # unzip the FAOSTAT.zip file
@@ -110,6 +110,7 @@ def unzip_FAO():
         handle.extractall(faostat_unzip) # extract the files into a "faostat" folder
         handle.close()
         os.remove(FAO_zip_path) # remove the zip file
+ 
     assert os.path.exists(faostat_unzip)
 
 def unzip_subfolders():
