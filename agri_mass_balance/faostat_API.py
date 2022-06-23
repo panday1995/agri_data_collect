@@ -30,9 +30,16 @@ import zipfile
 
 
 parent_path = pathlib.Path(__file__).parent.parent.resolve()
-data_path = os.path.join(parent_path,"Nutrient balance")
-faostat_unzip = os.path.join(data_path,"faostat")
+
+data_path = os.path.join(parent_path,"data")
+
+faostat_dir_name = "faostat"
+
+faostat_unzip = os.path.join(data_path,faostat_dir_name)
 FAO_zip = "FAOSTAT.zip"
+FAO_zip_path = os.path.join(data_path, FAO_zip)
+data_dir = os.path.join(parent_path,"data")
+# faostat_final_path = os.path.join(data_dir,faostat_dir_name)
 
 # install Chrome browser webdriver
 browser_driver_path = ChromeDriverManager().install() # path to browser driver for selenium
@@ -67,24 +74,30 @@ def down_FAOstat(website = website):
     Parameters
     ----------
     webiste: str, the website to be open
+
+    return
+    ---------
+    broswer: object, a browser object
     """
     browser = init_browser(website)
-    try:
-        # wait maximum 15 seconds until the download button is available
-        element = WebDriverWait(browser, 15).until(
-            # find element "FAOSTAT" by xpath and click
-            EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/i"))
-        )
-        element.click()
-    except:
-        browser.quit()
-        
+
+    # wait maximum 15 seconds until the download button is available
+    element = WebDriverWait(browser, 15).until(
+        # find element "FAOSTAT" by xpath and click
+        EC.presence_of_element_located((By.XPATH,"/html/body/div[2]/div[3]/div/div/div[2]/div[2]/div[1]/div/div[1]/i"))
+    )
+    element.click()
+    return browser      
 
 def unzip_FAO():
     """
     This function extract FAOstat data from 'FAOSTAT.zip' file into 'faostat' folder
     """
-    down_FAOstat()
+
+
+    if not os.path.exists(FAO_zip_path):
+        browser = down_FAOstat()
+        browser.quit() # close browser
     # go to the data    
     time = 0
     # unzip the FAOSTAT.zip file
@@ -92,18 +105,18 @@ def unzip_FAO():
         sleep(10) # if not, wait for 5 seconds
         time = time+10
         print("FAOSTAT downloading, {:.1f}s".format(time))
-    else: # if yes, unzip the file
-        assert os.path.exists(FAO_zip)
-        handle = zipfile.ZipFile(FAO_zip)      
-        handle.extractall(os.path.join(faostat_unzip)) # extract the files into a "faostat" folder
+    else: # if yes, unzip the file              
+        handle = zipfile.ZipFile(FAO_zip_path)      
+        handle.extractall(faostat_unzip) # extract the files into a "faostat" folder
         handle.close()
-        os.remove(FAO_zip) # remove the zip file
-    assert os.path.exists(faostat_unzip) 
+        os.remove(FAO_zip_path) # remove the zip file
+    assert os.path.exists(faostat_unzip)
 
 def unzip_subfolders():
     """
     This function unzips .zip files in FAOstat data folder
     """
+
     unzip_FAO()
     # go to the unzipped folder and unzip all the files inside
     zip_ls = os.chdir(faostat_unzip)
@@ -153,9 +166,10 @@ def sort_subfolders():
     for folder in folder_ls:
         first_word = folder.split("_")[0] # find the first word of a FAOstat folder
         if first_word in pair.keys():
-            # move folders from /faostat to /faostat/category
+            # move folders from /faostat to /faostat/category           
             shutil.move(faostat_unzip+'/'+folder,faostat_unzip+'/'+pair[first_word]+'/'+folder)
     
+    #shutil.move(faostat_unzip, data_dir)
     os.chdir("../../")
 
 sort_subfolders()
