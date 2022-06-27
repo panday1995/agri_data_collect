@@ -42,30 +42,48 @@ $$
 Nu_{fert} + \Delta Nu_{soil} + Nu_{manu} = Nu_{harv} + Nu_{resid} + Nu_{emis}  
 $$
 
-Knowns:
+__Knowns__:
 
 - $Nu_{fert}$ from [IFA and others](nutri_data/doi_10.5061_dryad.2rbnzs7qh__v3/Global_data_on_fertilizer_use_by_crop_and_by_country_2022.csv)
+  
+For $Nu_{fert}$, input to a crop,_i_, in a country,_n_, at year,_t_: </br>
+
+the IFA data source provides nutrient input rate, $c^{i,n,t}_{inputIFA}$, in $kg/ha$, and harvested area, $A^{i,n,t}_{harvIFA}$, in $ha$; </br>
+
+FAOstat data provides harvested area, $A^{i,n,t}_{harvFAO}$ (in $ha$), and nutrient input $C^{n,t}_{inputFAO}$ (in $kg$).</br>
+
+For crops in FAOstat, and in IFA, their nutrient inputs are
+$$
+C^{i,n,t}_{inputIFA} = c^{i,n,t}_{inputIFA} * A^{i,n,t}_{harvFAO}
+$$
+
+For crops $i$ in FAOstat $I_{FAO}$, but not in IFA $I_{IFA}$, their nutrient inputs are:
+
+$$
+C^{i,n,t} = \begin{cases}
+0, \qquad \qquad \qquad \qquad \qquad  if \sum_{i}C^{i,n,t}_{inputIFA} \ge C^{n,t}_{inputFAO}\\
+\\
+
+(C^{n,t}_{inputFAO} - \sum_{i}C^{i,n,t}_{inputIFA})*\frac{A^{i,n,t}_{inputIFA}}{A^{n,t}_{inputFAO} - \sum_{i}A^{i,n,t}_{inputIFA}}, if \sum_{i}C^{i,n,t}_{inputIFA} < C^{n,t}_{inputFAO}\\
+\end{cases}
+$$
+
+we need to concile data from IFA and others with faostat.</br>
+
 - $Nu_{resid}$ from FAOstat
 - $Nu_{soil}$ assumed no change in Tier 1 approach
   
-Unknowns:
+__Unknowns__:
 
 - $Nu_{manu}$ acquired from animal system <!--animal balance first assumes 0-->
 - $Nu_{harv}$ Nutrient absorbation rate <!--value from Stefano do some basic search, part of IPCC N2O, IPCC meeting before starting-->
-- $Nu_{emis}$ fertilizer use efficiency: fertilizers not absorbed by crops
+- $Nu_{emis}$ fertilizer use efficiency: fertilizers not absorbed by crops 
 
 ### Data sources
 
 [Table 11.1 of IPCC data](chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.ipcc-nggip.iges.or.jp/public/2019rf/pdf/4_Volume4/19R_V4_Ch11_Soils_N2O_CO2.pdf)
 
 ## Other balances
-
-<!--
-what are other balances to achieve a mass balance of crops?
-we have N, K, P balances
-C balance?
-H balance?
--->
 
 <!--
 Currently, I am only working on data collection. Do we also need some sort of data pipeline to connect collected data to data input into core modules?
