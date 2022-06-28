@@ -52,7 +52,12 @@ For $Nu_{fert}$, input to a crop,_i_, in a country,_n_, at year,_t_: </br>
 
 the IFA data source provides nutrient input $C^{i,n,t}_{inputIFA}$, nutrient input rate, $c^{i,n,t}_{inputIFA}$, in $kg/ha$, and harvested area, $A^{i,n,t}_{harvIFA}$, in $ha$. </br>
 
-#### __IFA data intro and clean__
+1. column name
+2. year format -> crop year t-t+1 == calendar  year t, e.g., Mexico 90-91, Australia 90-91
+3. fill NA values (141 na values in 7529), fill na with 0.
+4. value transform from 1000 tonne to tonne
+
+#### __FAO data intro and clean__
 
 FAOstat data provides harvested area, $A^{i,n,t}_{harvFAO}$ (in $ha$), and nutrient input $C^{n,t}_{inputFAO}$ (in $kg$).</br>
 
