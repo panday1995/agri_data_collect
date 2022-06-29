@@ -29,7 +29,7 @@ import shutil
 import zipfile
 
 
-parent_path = pathlib.Path(__file__).parent.parent.resolve()
+parent_path = pathlib.Path(__file__).parent.parent.parent.resolve()
 
 data_path = os.path.join(parent_path,"data")
 
